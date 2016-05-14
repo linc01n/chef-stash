@@ -64,3 +64,21 @@ template "#{node['stash']['install_path']}/bitbucket/bin/user.sh" do
   notifies :restart, "service[#{node['stash']['product']}]", :delayed
   only_if { node['stash']['product'] == 'bitbucket' }
 end
+
+if stash_version >= Chef:: Version.new('4.6.0')
+  template "#{node['stash']['install_path']}/bitbucket/bin/set-bitbucket-home.sh" do
+    source 'bitbucket/set-bitbucket-home.sh.erb'
+    owner node['stash']['user']
+    mode '0755'
+    notifies :restart, "service[#{node['stash']['product']}]", :delayed
+    only_if { node['stash']['product'] == 'bitbucket' }
+  end
+
+  template "#{node['stash']['install_path']}/bitbucket/bin/set-bitbucket-user.sh" do
+    source 'bitbucket/set-bitbucket-user.sh.erb'
+    owner node['stash']['user']
+    mode '0755'
+    notifies :restart, "service[#{node['stash']['product']}]", :delayed
+    only_if { node['stash']['product'] == 'bitbucket' }
+  end
+end
