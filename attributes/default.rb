@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 set['build-essential']['compile_time'] = true
 
-default['stash']['version']      = '4.6.2'
+default['stash']['version']      = '4.11.0'
 default['stash']['product']      = Chef::Version.new(node['stash']['version']) >= Chef::Version.new('4.0.0') ? 'bitbucket' : 'stash'
 
 default['stash']['home_path'] = if Dir.exist?('/var/atlassian/application-data/stash')
@@ -165,6 +165,7 @@ default['stash']['checksum'] =
   when '4.8.1' then 'd77de9aa4f19114f118f2438b05dbd81191847d524b974feecd030937385b275'
   when '4.8.2' then '14962bdd1713f4f1ccd580158ae206249d5e4c3cf4596275b2c258edc18b20ac'
   when '4.8.3' then '8f5544e8b9e6cb444df6ce401425ec308c380e317618c40d8895f6ebb2aa6328'
+  when '4.11.0' then '7b6238d52501e8946fbc536f3aba525d3948a5448b0184bf71e526be6c7d9e3d'
   end
 
 # Data bag where credentials and other sensitive data could be stored (optional)
